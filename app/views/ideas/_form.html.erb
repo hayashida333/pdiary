@@ -1,0 +1,41 @@
+<%= form_with(model: idea) do |form| %>
+  <% if idea.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(idea.errors.count, "error") %> prohibited this idea from being saved:</h2>
+
+      <ul>
+        <% idea.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-4">
+  <%= form.label :title, class: "form-label" %>
+  <%= form.text_field :title, class: "form-control" %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="my-4">
+    <%= form.label :description, class: "form-label" %>
+    <%= form.text_area :description, class: "form-control" %>
+  </div>
+
+  <div class="my-4">
+    <%= form.label :picture, class: "form-label" %>
+    <%= form.file_field :picture, class: "form-control" %>
+  </div>
+
+  <div class="my-4">
+    <%= form.label :published_at, class: "form-label" %>
+    <%= form.date_field :published_at, class: "form-control" %>
+  </div>
+
+  <div class="my-4">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>
