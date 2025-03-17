@@ -10,12 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_31_124554) do
+ActiveRecord::Schema[7.2].define(version: 2025_02_23_043321) do
   create_table "ideas", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.string "picture"
     t.date "published_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.text "body"
+    t.string "youtube_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "quiz_questions", force: :cascade do |t|
+    t.string "question"
+    t.string "option1"
+    t.string "option2"
+    t.string "option3"
+    t.string "option4"
+    t.integer "correct"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

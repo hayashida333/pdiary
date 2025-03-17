@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
+  get "quiz_questions/index"
+  get "quiz_questions/show"
   devise_for :users
   root to:redirect('/ideas')
+  resources :posts
   resources :ideas
+  resources :quiz_questions, only: [:index, :show] do
+  member do
+  post :answer
+  end
+end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

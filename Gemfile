@@ -58,3 +58,5 @@ end
 gem "carrierwave", "~> 2.2.3"
 gem "mini_magick", "~> 4.11.0"
 gem "devise", "4.9.4"
+gem 'google-api-client', '~> 0.53'
+gem 'rest-client', '~> 2.1'

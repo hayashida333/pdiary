@@ -7,3 +7,20 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+QuizQuestion.create(
+  question: '日本の首都はどこですか？',
+  option1: '東京',
+  option2: '大阪',
+  option3: '京都',
+  option4: '札幌',
+  correct: 1
+)
+
+QuizQuestion.create(
+  question: 'プログラミング言語Rubyは誰によって作られましたか？',
+  option1: '松本行弘',
+  option2: 'リン・タスカ',
+  option3: 'グイド・ヴァン・ロッサム',
+  option4: 'ダグラス・クロックホフ',
+  correct: 1
+)
