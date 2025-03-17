@@ -55,7 +55,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-gem "carrierwave", "~> 2.2.3"
+gem "carrierwave", "~> 3.1.1"
 gem "mini_magick", "~> 4.11.0"
 gem "devise", "4.9.4"
 gem 'google-api-client', '~> 0.53'
