@@ -1,22 +1,54 @@
-<h1>投稿一覧</h1>
+<h1>ホーム画面</h1>
 
 <div id="ideas">
-  <% @ideas.in_groups_of(3, false) do |idea_group| %>
+  <% @ideas.in_groups_of(3, false).each do |idea_group| %>
+    <div class="row">
+      <% idea_group.each do |idea| %>
+        <div class="col-md-4 my-3">
+          <%= link_to idea do %>
+            <%= image_tag(idea.picture_url(:thumb), width: '100%') if idea.picture.present? %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
 
-      <div class="row">
-        <% idea_group.each do | idea | %>
-          <div class="col-md-4 my-3">
 
-            <%= link_to idea do %>
 
-              <%= image_tag(idea.picture_url(:thumb), width: '100%') if idea.picture.present? %>
-            <% end %>
+<% content_for :title, "Posts" %>
 
-          </div>
+<h1>動画</h1>
 
-        <% end %>
-
+<div id="posts">
+  <% if @posts.present? %>  <!-- @postsがnilでない場合 -->
+  <% @posts.each do |post| %>
+  <div class="post">
+      <p><%= post.body %></p>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= post.youtube_url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div>
+        <%= link_to 'Show', post %>
+        <%= link_to 'Edit', edit_post_path(post) %>
+        <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
       </div>
+    </div>
+  <% end %>
+  <% else %>
+    <p>投稿はまだありません。</p>  <!-- 投稿がない場合のメッセージ -->
+  <% end %>
+</div>
+
+<%= link_to "New post", new_post_path %>
+
+<h1>クイズ一覧</h1>
+<ul>
+  <% if @quiz_questions.present? %>
+    <% @quiz_questions.each do |quiz_question| %>
+      <li>
+        <%= link_to quiz_question.question, quiz_question_path(quiz_question) %>
+      </li>
     <% end %>
-  </div>
-      
+  <% else %>
+    <li>No quiz questions available.</li>
+  <% end %>
+</ul>

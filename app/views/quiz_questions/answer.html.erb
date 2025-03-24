@@ -1,0 +1,12 @@
+<%= form_with url: answer_quiz_question_path(@quiz_question), method: :post, local: true do |form| %>
+  <h3><%= @quiz_question.question %></h3>
+
+  <% @quiz_question.options.each_with_index do |option, index| %>
+    <div>
+      <%= form.radio_button :selected_option, option, id: "option_#{index}" %>
+      <%= form.label "option_#{index}", option %>
+    </div>
+  <% end %>
+
+  <%= form.submit "回答" %>
+<% end %>

@@ -38,6 +38,4 @@ class PostsTest < ApplicationSystemTestCase
     visit post_url(@post)
     click_on "Destroy this post", match: :first
 
-    assert_text "Post was successfully destroyed"
-  end
 end

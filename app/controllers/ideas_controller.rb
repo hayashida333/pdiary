@@ -5,10 +5,13 @@ class IdeasController < ApplicationController
   # GET /ideas or /ideas.json
   def index
     @ideas = Idea.all
+    @posts = Post.all
+    @quiz_questions = QuizQuestion.all
   end
 
   # GET /ideas/1 or /ideas/1.json
   def show
+    @post = Post.find_by(id: params[:id])  # 例: `params[:id]` がURLから渡されるID
   end
 
   # GET /ideas/new

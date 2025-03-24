@@ -8,19 +8,19 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 QuizQuestion.create(
-  question: '日本の首都はどこですか？',
-  option1: '東京',
-  option2: '大阪',
-  option3: '京都',
-  option4: '札幌',
-  correct: 1
+  question: '従業員が重機を使用して作業をしています。従業員に自分の位置を伝える効果的な方法は？',
+  option1: '大声を出す',
+  option2: '近づく',
+  option3: '作業方向に石を投げる',
+  option4: '電話をかける',
+  correct: 3
 )
 
 QuizQuestion.create(
-  question: 'プログラミング言語Rubyは誰によって作られましたか？',
-  option1: '松本行弘',
-  option2: 'リン・タスカ',
-  option3: 'グイド・ヴァン・ロッサム',
-  option4: 'ダグラス・クロックホフ',
-  correct: 1
+  question: '解体現場にて作業をしています。次の内正しくない対応はどれですか？',
+  option1: '足場に乗った時に安定性、強度を確認する',
+  option2: '安全帯を使用して作業に取り組む',
+  option3: '作業に取り組む前に5S運動に取り組む',
+  option4: '前日に深酒をする',
+  correct: 4
 )

@@ -5,9 +5,11 @@ Rails.application.routes.draw do
   root to:redirect('/ideas')
   resources :posts
   resources :ideas
+  resources :quizzes
   resources :quiz_questions, only: [:index, :show] do
+  post 'answer', on: :member
+  post 'check_answer', on: :member
   member do
-  post :answer
   end
 end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

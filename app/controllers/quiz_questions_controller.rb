@@ -1,23 +1,23 @@
 class QuizQuestionsController < ApplicationController
-  before_action :set_quiz_question, only: %i[show answer]
-
-  def show
-    # ここでは特に処理しません
+  before_action :set_quiz_question, only: [:show, :check_answer]
+  def index
+    @quiz_questions = QuizQuestion.all
   end
 
-  def answer
-    # ユーザーが選んだオプションを受け取る
-    selected_option = params[:option].to_i
+  def show
+    @quiz_question = QuizQuestion.find(params[:id])
+    @quiz = @quiz_question.quiz
+    @options = @quiz_question.options # 選択肢を取得
+  end
 
-    # 正解と比較して結果を表示
-    if selected_option == @quiz_question.correct
+  def check_answer
+    selected_option = Option.find(params[:answer])
+    if selected_option.is_correct
       flash[:notice] = "正解です！"
     else
-      flash[:alert] = "不正解です。もう一度挑戦してください。"
+      flash[:alert] = "不正解です。"
     end
-
-    # クイズ詳細ページにリダイレクト
-    redirect_to @quiz_question
+    redirect_to quiz_question_path(@quiz_question)
   end
 
   private

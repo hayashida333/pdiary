@@ -1,37 +1,7 @@
-<p style="color: green"><%= notice %></p>
-
-<% content_for :title, "Posts" %>
-
-<h1>共有動画</h1>
-
-<div id="posts">
-  <% @posts.each do |post| %>
-  <tr>
-        <td><%= post.body %></td>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/<%=post.youtube_url%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <%= render post %>
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New post", new_post_path %>
-
-<h1>クイズ一覧</h1>
-
+<!-- app/views/posts/index.html.erb -->
+<h1>Post一覧</h1>
 <ul>
-  <% if @quiz_questions.present? %>
-    <% @quiz_questions.each do |quiz_question| %>
-      <li>
-        <%= link_to quiz_question.question, quiz_question_path(quiz_question) %>
-      </li>
-    <% end %>
-  <% else %>
-    <li>No quiz questions available.</li>
+  <% @posts.each do |post| %>
+    <li><%= post.title %></li>
   <% end %>
 </ul>

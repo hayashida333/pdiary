@@ -1,11 +1,10 @@
-<%= form_with(model: idea) do |form| %>
-  <% if idea.errors.any? %>
+<%= form_with(model: @idea) do |form| %>
+  <% if @idea.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(idea.errors.count, "error") %> prohibited this idea from being saved:</h2>
-
+      <h2><%= pluralize(@idea.errors.count, "error") %> prohibited this idea from being saved:</h2>
       <ul>
-        <% idea.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% @idea.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>

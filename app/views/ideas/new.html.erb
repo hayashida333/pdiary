@@ -9,3 +9,15 @@
 <div>
   <%= link_to "Back to ideas", ideas_path %>
 </div>
+
+<% content_for :title, "New post" %>
+
+<h1>New post</h1>
+
+<%= render "form", post: @post %> <!-- フォームの部分を表示 -->
+
+<br>
+
+<div>
+  <%= link_to "Back to posts", posts_path %> <!-- 投稿一覧に戻るリンク -->
+</div>

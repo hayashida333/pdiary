@@ -8,3 +8,26 @@
   <%= button_to "Destroy this idea", @idea, method: :delete, class: "btn btn-danger ms-3" %>
 </div>
 <% end %>
+
+<p>
+  <strong>Body:</strong>
+  <% if @post.present? %>  <!-- @postが存在する場合のみ表示 -->
+    <%= @post.body %>
+  <% else %>
+    <p>このアイデアは存在しません。</p>
+  <% end %>
+</p>
+
+  <strong>Youtube url:</strong>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @post.youtube_url%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
+
+<%= render @post %>
+
+<div>
+  <%= link_to "Edit this post", edit_post_path(@post) %> |
+  <%= link_to "Back to posts", posts_path %>
+
+  <%= button_to "Destroy this post", @post, method: :delete %>
+
+</div>

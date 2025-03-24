@@ -27,74 +27,51 @@ class PostsController < ApplicationController
     url = url.last(11)
     @post.youtube_url = url
 
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: "Post was successfully created." }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+    def set_post
+      # 例として最初の投稿を取得
+      @post = Post.first
+    end
+
+      respond_to do |format|
+        if @post.update(post_params)
+          format.html { redirect_to @post, notice: "Post was successfully updated." }
+          format.json { render :show, status: :ok, location: @post }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @post.errors, status: :unprocessable_entity }
+        end
       end
     end
-  end
 
-  # PATCH/PUT /posts/1 or /posts/1.json
-  def update
-    respond_to do |format|
-      if @post.update(post_params)
-        format.html { redirect_to @post, notice: "Post was successfully updated." }
-        format.json { render :show, status: :ok, location: @post }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+    def update
+      respond_to do |format|
+        if @post.update(post_params)
+          format.html { redirect_to @post, notice: "Post was successfully updated." }
+          format.json { render :show, status: :ok, location: @post }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @post.errors, status: :unprocessable_entity }
+        end
       end
     end
-  end
-
-  # DELETE /posts/1 or /posts/1.json
-  def destroy
-    @post.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to posts_path, status: :see_other, notice: "Post was successfully destroyed." }
-      format.json { head :no_content }
-    end
-  end
-
-  private
-
-  def set_post
-    @post = Post.find(params[:id])
-  end
-
-  def post_params
-    params.require(:post).permit(:body, :youtube_url)
-  end
-end
-
-# QuizQuestionsController は PostsController の外に定義するべきです
-class QuizQuestionsController < ApplicationController
-  def create
-    @quiz_question = QuizQuestion.new(quiz_question_params)
-
-    respond_to do |format|
-      if @quiz_question.save
-        format.html { redirect_to @quiz_question, notice: "Quiz question was successfully created." }
-        format.json { render :show, status: :created, location: @quiz_question }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @quiz_question.errors, status: :unprocessable_entity }
+  
+    # DELETE /posts/1 or /posts/1.json
+    def destroy
+      @post.destroy!
+  
+      respond_to do |format|
+        format.html { redirect_to posts_path, status: :see_other, notice: "削除されました" }
+        format.json { head :no_content }
       end
     end
+  
+    private
+  
+    def set_post
+      @post = Post.find(params[:id])
+    end
+  
+    def post_params
+      params.require(:post).permit(:body, :youtube_url)
+    end
   end
-
-  def show
-    @quiz_question = QuizQuestion.find(params[:id])
-  end
-
-  private
-
-  def quiz_question_params
-    params.require(:quiz_question).permit(:question, :answer)
-  end
-end
