@@ -6,10 +6,10 @@ Rails.application.routes.draw do
   resources :posts
   resources :ideas
   resources :quiz_questions, only: [:index, :show] do
-  member do
-  post :answer
+    member do
+      post :answer
+    end
   end
-end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -22,4 +22,8 @@ end
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  namespace :admin do
+    resources :users, only: %i[index]
+  end
 end
