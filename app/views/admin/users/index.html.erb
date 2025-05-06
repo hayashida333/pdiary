@@ -1,1 +1,22 @@
-
+<table class="table table-striped">
+  <tr>
+    <th>年月</th>
+    <th>区分</th>
+    <th>科目</th>
+    <th>金額</th>
+    <th>リンク</th>
+  </tr>
+  <% @users.each do |user| %>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      <%= link_to "詳細", user_path(user), class: "btn btn-info" %>
+      <%= link_to "編集", edit_user_path(user), class: "btn btn-warning" %>
+      <%= link_to "削除", user_path(user), method: "delete", data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger" %>
+    </td>
+  </tr>
+  <% end %>
+</table>
