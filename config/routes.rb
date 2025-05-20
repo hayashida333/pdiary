@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  get "home/index"
   get "quiz_questions/index"
   get "quiz_questions/show"
   devise_for :users
   root to:redirect('/ideas')
   resources :posts
   resources :ideas
+  resources :users
   resources :quiz_questions, only: [:index, :show] do
     member do
       post :answer
