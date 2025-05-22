@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
+  get "top/index"
   get "home/index"
   get "quiz_questions/index"
   get "quiz_questions/show"
   devise_for :users
-  root to:redirect('/ideas')
+  root to: 'top#index'
   resources :posts
   resources :ideas
   resources :users
