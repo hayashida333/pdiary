@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
-  get "top/index"
-  get "home/index"
   get "quiz_questions/index"
   get "quiz_questions/show"
   devise_for :users
-  root to: 'top#index'
+  root to:redirect('/ideas')
   resources :posts
   resources :ideas
   resources :users
@@ -27,6 +25,6 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   namespace :admin do
-    resources :users, only: %i[index]
+    resources :users, only: %i[index new create]
   end
 end
