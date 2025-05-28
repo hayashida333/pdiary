@@ -14,7 +14,7 @@
   <body>
     <main class="d-flex flex-nowrap">
       <!-- sidebar -->
-      <div class="flex-column p-3 text-bg-dark" style="width: 280px;">
+      <div class="flex-column p-3 text-bg-dark min-vh-100" style="width: 280px;">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <span class="fs-4">情報共有システム</span>
         </a>
@@ -38,7 +38,7 @@
         </ul>
       </div>
       <!-- 右側のコンテンツ -->
-      <div style="flex-grow-1; padding: 20px;">
+      <div class="w-100 p-5">
         <%= yield %>
       </div>
     </main>
