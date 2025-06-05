@@ -22,7 +22,10 @@
         </td>
           <td>
             <%= link_to "詳細", admin_user_path(user), class: "btn btn-info me-1" %>
-            <%= link_to "削除", admin_user_path(user), method: :delete, data: { confirm: "本当に削除しますか？", turbo: false }, class: "btn btn-danger me-1" %>
+            <%= button_to "削除", admin_user_path(user),
+              method: :delete,
+              data: { confirm: "本当に削除しますか？" },
+              class: "btn btn-danger me-1" %>
           </td>
         </tr>
       <% end %>
