@@ -26,5 +26,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+    resources :posts, controller: "admin_posts"   # AdminPostsControllerを使う場合
+  resources :ideas, controller: "admin_ideas"   # AdminIdeasControllerを使う場合
   end
 end

@@ -1,0 +1,15 @@
+<%= form_with(model: [:admin, post], local: true) do |f| %>
+  <div>
+    <%= f.label :title, "タイトル" %><br>
+    <%= f.text_field :title, required: true %>
+  </div>
+
+  <div>
+    <%= f.label :content, "内容" %><br>
+    <%= f.text_area :content, rows: 10, required: true %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
