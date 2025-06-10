@@ -10,25 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_06_08_145754) do
-  create_table "admin_ideas", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
-    t.integer "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_admin_ideas_on_user_id"
-  end
-
-  create_table "admin_posts", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
-    t.integer "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_admin_posts_on_user_id"
-  end
-
+ActiveRecord::Schema[7.2].define(version: 2025_02_23_043321) do
   create_table "ideas", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -70,7 +52,4 @@ ActiveRecord::Schema[7.2].define(version: 2025_06_08_145754) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
-
-  add_foreign_key "admin_ideas", "users"
-  add_foreign_key "admin_posts", "users"
 end
