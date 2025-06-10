@@ -28,18 +28,27 @@ module Admin
     end
 
     def update
+      # id が params[:id] と一致する User を検索
       @user = User.find(params[:id])
 
+      # --- 以降、User が取得できている前提のコード. なぜなら取得できていないとエラーになるから ---
+
+      # NOTE: パスワード以外だけを変更したい場合に、パスワードを入力する必要がないようにしている
       if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
         params[:user].extract!(:password, :password_confirmation)
       end
 
+      # update メソッドを実行
+      # update メソッドは引数のパラメータ(formから送られてきた値)で user を更新しようとする
+      # update メソッドは更新に成功すると true を返す。失敗すると false を返す
       if @user.update(user_params)
+        # 更新に成功した場合こっち
+        # 更新に成功したら、ユーザ一覧画面にリダイレクトさせる
         redirect_to admin_user_path(@user), notice: "ユーザー情報を更新しました"
       else
-        # ここでエラーログを出す
-        Rails.logger.debug "更新失敗: #{@user.errors.full_messages.join(', ')}"
-          render :edit
+        # 更新に失敗した場合こっち
+        # 編集画面を出力する
+        render :edit
       end
     end
 
