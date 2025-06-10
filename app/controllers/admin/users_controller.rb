@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Admin
   class UsersController < ApplicationController
     def index
@@ -26,21 +27,21 @@ module Admin
       @user = User.find(params[:id])
     end
 
-   def update
-  @user = User.find(params[:id])
+    def update
+      @user = User.find(params[:id])
 
-  if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
-    params[:user].extract!(:password, :password_confirmation)
-  end
+      if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+        params[:user].extract!(:password, :password_confirmation)
+      end
 
-  if @user.update(user_params)
-    redirect_to admin_user_path(@user), notice: 'ユーザー情報を更新しました'
-  else
-    # ここでエラーログを出す
-    Rails.logger.debug "更新失敗: #{@user.errors.full_messages.join(', ')}"
-    render :edit
-  end
-end
+      if @user.update(user_params)
+        redirect_to admin_user_path(@user), notice: "ユーザー情報を更新しました"
+      else
+        # ここでエラーログを出す
+        Rails.logger.debug "更新失敗: #{@user.errors.full_messages.join(', ')}"
+          render :edit
+      end
+    end
 
     def destroy
       @user = User.find(params[:id])
