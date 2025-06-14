@@ -1,26 +1,29 @@
 <p style="color: green"><%= notice %></p>
 
-<% content_for :title, "Posts" %>
+<% content_for :title, "動画一覧" %>
 
 <h1>共有動画</h1>
 
 <div id="posts">
   <% @posts.each do |post| %>
-  <tr>
-        <td><%= post.body %></td>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/<%=post.youtube_url%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <%= render post %>
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
+    <div class="mb-4">
+      <p><strong>タイトル:</strong> <%= post.title %></p>
+
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= post.youtube_url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+      <div class="mt-2">
+        <%= link_to '表示', post, class: "btn btn-outline-primary btn-sm me-2" %>
+        <%= link_to '編集', edit_post_path(post), class: "btn btn-outline-warning btn-sm me-2" %>
+        <%= link_to '削除', post, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-outline-danger btn-sm" %>
+      </div>
+    </div>
   <% end %>
 </div>
 
-<%= link_to "New post", new_post_path %>
+
+<div class="my-4">
+  <%= link_to "新規投稿", new_post_path, class: "btn btn-primary" %>
+</div>
 
 <h1>クイズ一覧</h1>
 
@@ -32,6 +35,6 @@
       </li>
     <% end %>
   <% else %>
-    <li>No quiz questions available.</li>
+    <li>クイズはまだ登録されていません。</li>
   <% end %>
 </ul>

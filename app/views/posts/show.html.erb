@@ -1,21 +1,19 @@
 <p style="color: green"><%= notice %></p>
 
 <p>
-  <strong>Body:</strong>
+  <strong>本文:</strong>
   <%= @post.body %>
 </p>
 
 <p>
-  <strong>Youtube url:</strong>
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @post.youtube_url%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <strong>YouTube動画:</strong>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @post.youtube_url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </p>
 
 <%= render @post %>
 
-<div>
-  <%= link_to "Edit this post", edit_post_path(@post) %> |
-  <%= link_to "Back to posts", posts_path %>
-
-  <%= button_to "Destroy this post", @post, method: :delete %>
-
+<div class="d-flex gap-2 mt-3">
+  <%= link_to "投稿一覧に戻る", posts_path, class: "btn btn-secondary" %>
+  <%= button_to "投稿を削除", @post, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
 </div>
+

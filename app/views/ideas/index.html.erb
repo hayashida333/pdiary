@@ -1,4 +1,8 @@
-<h1>投稿一覧</h1>
+<h1>こんなことがありましたページ</h1>
+
+<div class="mb-3">
+  <%= link_to " 新規投稿", new_idea_path, class: "btn btn-primary" %>
+</div>
 
 <div id="ideas">
   <% @ideas.in_groups_of(3, false) do |idea_group| %>
