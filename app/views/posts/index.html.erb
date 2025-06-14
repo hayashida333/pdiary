@@ -7,12 +7,12 @@
 <div id="posts">
   <% @posts.each do |post| %>
     <div class="mb-4">
-      <p><strong>タイトル:</strong> <%= post.title %></p>
+
 
       <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= post.youtube_url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
       <div class="mt-2">
-        <%= link_to '表示', post, class: "btn btn-outline-primary btn-sm me-2" %>
+        <%= link_to '詳細情報', post, class: "btn btn-outline-primary btn-sm me-2" %>
         <%= link_to '編集', edit_post_path(post), class: "btn btn-outline-warning btn-sm me-2" %>
         <%= link_to '削除', post, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-outline-danger btn-sm" %>
       </div>
@@ -24,17 +24,3 @@
 <div class="my-4">
   <%= link_to "新規投稿", new_post_path, class: "btn btn-primary" %>
 </div>
-
-<h1>クイズ一覧</h1>
-
-<ul>
-  <% if @quiz_questions.present? %>
-    <% @quiz_questions.each do |quiz_question| %>
-      <li>
-        <%= link_to quiz_question.question, quiz_question_path(quiz_question) %>
-      </li>
-    <% end %>
-  <% else %>
-    <li>クイズはまだ登録されていません。</li>
-  <% end %>
-</ul>

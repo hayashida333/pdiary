@@ -1,23 +1,11 @@
 <h1><%= @quiz_question.question %></h1>
 
-<ul>
-  <li><%= form_with url: answer_quiz_question_path(@quiz_question), method: :post do |form| %>
-    <%= form.radio_button :option, 1 %>
-    <%= form.label :option, @quiz_question.option1 %>
-  <% end %></li>
-  
-  <li><%= form_with url: answer_quiz_question_path(@quiz_question), method: :post do |form| %>
-    <%= form.radio_button :option, 2 %>
-    <%= form.label :option, @quiz_question.option2 %>
-  <% end %></li>
-
-  <li><%= form_with url: answer_quiz_question_path(@quiz_question), method: :post do |form| %>
-    <%= form.radio_button :option, 3 %>
-    <%= form.label :option, @quiz_question.option3 %>
-  <% end %></li>
-
-  <li><%= form_with url: answer_quiz_question_path(@quiz_question), method: :post do |form| %>
-    <%= form.radio_button :option, 4 %>
-    <%= form.label :option, @quiz_question.option4 %>
-  <% end %></li>
-</ul>
+<%= form_with url: answer_quiz_question_path(@quiz_question), method: :post do %>
+  <div>
+    <%= radio_button_tag :option, 1 %> <%= @quiz_question.option1 %><br>
+    <%= radio_button_tag :option, 2 %> <%= @quiz_question.option2 %><br>
+    <%= radio_button_tag :option, 3 %> <%= @quiz_question.option3 %><br>
+    <%= radio_button_tag :option, 4 %> <%= @quiz_question.option4 %><br>
+  </div>
+  <%= submit_tag "回答する" %>
+<% end %>

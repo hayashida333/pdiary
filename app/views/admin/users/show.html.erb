@@ -18,7 +18,10 @@
       <th>電話番号</th>
       <td><%= @user.tel_number %></td>
     </tr>
-    <!-- 必要に応じて他の属性も表示 -->
+    <tr>
+      <th>備考</th>
+      <td><%= simple_format(@user.remarks) %></td>
+    </tr>
   </tbody>
 </table>
 

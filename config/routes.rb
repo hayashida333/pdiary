@@ -1,30 +1,29 @@
 Rails.application.routes.draw do
-  get "quiz_questions/index"
-  get "quiz_questions/show"
+  # Devise（ログイン認証）
   devise_for :users
-  root to:redirect('/ideas')
+
+  # トップページを /ideas にリダイレクト
+  root to: redirect('/ideas')
+
+  # 投稿関連
   resources :posts
   resources :ideas
   resources :users
-  resources :quiz_questions, only: [:index, :show] do
-    member do
-      post :answer
-    end
-  end
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  # クイズ機能：一覧、詳細、回答アクション
+  resources :quiz_questions, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+    post 'answer', on: :member
+  end
+
+  # ヘルスチェック
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Render dynamic PWA files from app/views/pwa/*
+  # PWA用ファイル
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
-  # Defines the root path route ("/")
-  # root "posts#index"
-
+  # 管理者用名前空間
   namespace :admin do
-    resources :users, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+    resources :users
   end
 end
