@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[show edit update destroy]
-  before_action :require_admin, only: %i[edit update destroy new create] # newとcreateも管理者権限を要求
+  before_action :authenticate_user!
+  before_action :require_admin, only: %i[edit update destroy new create]
+  before_action :set_post, only: %i[show edit update destroy] # newとcreateも管理者権限を要求
 
   def index
     @posts = Post.all
@@ -72,10 +73,9 @@ end
 
   # 管理者権限をチェックするメソッドを追加
   def require_admin
-    # ここでは current_user が存在し、かつ admin が true であることを確認します。
-    # current_user メソッドは、ユーザー認証システム (例: Devise) によって提供されていると仮定します。
-    unless current_user && current_user.admin?
-      redirect_to posts_path, alert: "管理者権限がありません。"
-    end
+  Rails.logger.debug "current_user: #{current_user.inspect}"
+  unless current_user && current_user.admin?
+    redirect_to posts_path, alert: "管理者権限がありません。"
   end
+end
 end

@@ -1,6 +1,7 @@
-<div class="float-end">
-  <%= link_to "新規登録", new_admin_user_path, class: "btn btn-primary header-btn" %>
-</div>
+<div class="container clearfix">
+  <div class="float-end">
+    <%= link_to "新規登録", new_admin_user_path, class: "btn btn-primary header-btn" %>
+  </div>
 
   <table class="table table-striped">
     <thead>
@@ -20,8 +21,7 @@
           <td><%= user.last_name %> <%= user.first_name %></td>
           <td><%= user.gender %></td>
           <td><%= user.email %></td>
-          <td><%= user.tel_number %>
-        </td>
+          <td><%= user.tel_number %></td>
           <td>
             <%= link_to "詳細", admin_user_path(user), class: "btn btn-info me-1" %>
             <%= button_to "削除", admin_user_path(user),
@@ -33,25 +33,36 @@
       <% end %>
     </tbody>
   </table>
+
+  <h3>クイズ結果一覧（最新5件）</h3>
+  <% if defined?(@quiz_results) && @quiz_results.present? %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>問題</th>
+          <th>結果</th>
+          <th>日時</th>
+          <th>ユーザー名</th> 
+        </tr>
+      </thead>
+      <tbody>
+        <% @quiz_results.each do |result| %>
+          <tr>
+            <td><%= truncate(result.quiz_question.question, length: 30) %></td>
+            <td>
+              <% if result.correct %>
+                <span class="text-success">正解</span>
+              <% else %>
+                <span class="text-danger">不正解</span>
+              <% end %>
+            </td>
+            <td><%= result.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+            <td><%= result.user.last_name %> <%= result.user.first_name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>クイズ結果の表示情報がありません。</p>
+  <% end %>
 </div>
-
-<style>
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  thead th, tbody td, tfoot td {
-    padding: 20px;
-    font-size: 18px;
-    border: 1px solid #dddddd;
-  }
-
-  thead th {
-    background-color: #f2f2f2;
-  }
-
-  tfoot td {
-    background-color: #e9e9e9;
-  }
-</style>

@@ -1,4 +1,5 @@
 class QuizQuestionsController < ApplicationController
+  before_action :authenticate_user!, only: [:answer]
   before_action :set_quiz_question, only: %i[show answer edit update destroy]
 
   def index
