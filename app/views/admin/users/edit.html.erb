@@ -23,6 +23,12 @@
   </div>
 
   <div class="mb-3">
+    <%= form.label :gender, "性別" %><br>
+    <%= form.radio_button :gender, "男" %> <%= form.label :gender, "男", value: "男" %>
+    <%= form.radio_button :gender, "女" %> <%= form.label :gender, "女", value: "女" %>
+  </div>
+
+  <div class="mb-3">
     <%= form.label :email, "メールアドレス" %>
     <%= form.email_field :email, class: "form-control" %>
   </div>
