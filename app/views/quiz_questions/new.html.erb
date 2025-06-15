@@ -3,27 +3,27 @@
 <%= form_with model: @quiz_question, local: true do |form| %>
   <div>
     <%= form.label :question, "問題文" %><br>
-    <%= form.text_field :question %>
+    <%= form.text_area :question, rows: 5, style: "width: 100%;" %>
   </div>
 
   <div>
     <%= form.label :option1, "選択肢1" %><br>
-    <%= form.text_field :option1 %>
+    <%= form.text_field :option1, style: "width: 100%;" %>
   </div>
 
   <div>
     <%= form.label :option2, "選択肢2" %><br>
-    <%= form.text_field :option2 %>
+    <%= form.text_field :option2, style: "width: 100%;" %>
   </div>
 
   <div>
     <%= form.label :option3, "選択肢3" %><br>
-    <%= form.text_field :option3 %>
+    <%= form.text_field :option3, style: "width: 100%;" %>
   </div>
 
   <div>
     <%= form.label :option4, "選択肢4" %><br>
-    <%= form.text_field :option4 %>
+    <%= form.text_field :option4, style: "width: 100%;" %>
   </div>
 
   <div>
@@ -32,8 +32,8 @@
   </div>
 
   <div>
-    <%= form.submit "作成" %>
+      <%= form.submit "作成", class: "btn btn-primary" %>
   </div>
 <% end %>
 
-<%= link_to "クイズ一覧に戻る", quiz_questions_path %>
+<%= link_to "クイズ一覧に戻る", quiz_questions_path, class: "btn btn-warning" %>

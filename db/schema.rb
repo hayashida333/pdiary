@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_06_15_033632) do
+ActiveRecord::Schema[7.2].define(version: 2025_06_15_102343) do
   create_table "admin_ideas", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -56,6 +56,16 @@ ActiveRecord::Schema[7.2].define(version: 2025_06_15_033632) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "quiz_results", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "quiz_question_id", null: false
+    t.boolean "correct"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quiz_question_id"], name: "index_quiz_results_on_quiz_question_id"
+    t.index ["user_id"], name: "index_quiz_results_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -69,10 +79,13 @@ ActiveRecord::Schema[7.2].define(version: 2025_06_15_033632) do
     t.datetime "updated_at", null: false
     t.text "remarks"
     t.string "gender"
+    t.boolean "admin"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "admin_ideas", "users"
   add_foreign_key "admin_posts", "users"
+  add_foreign_key "quiz_results", "quiz_questions"
+  add_foreign_key "quiz_results", "users"
 end

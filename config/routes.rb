@@ -8,9 +8,11 @@ Rails.application.routes.draw do
   # 投稿関連
   resources :posts
   resources :ideas
-  resources :users
 
-  # クイズ機能：一覧、詳細、回答アクション
+  # ユーザー関連（show, index のみ許可し destroy は除外）
+  resources :users, only: [:index, :show]
+
+  # クイズ機能
   resources :quiz_questions, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     post 'answer', on: :member
   end

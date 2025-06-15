@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 validates :gender, inclusion: { in: ["男", "女"], message: "は男または女を選んでください" }
+has_many :quiz_results
 end
