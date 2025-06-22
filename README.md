@@ -1,24 +1,18 @@
-# README
+# order_form
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 概要
+自身が見てきた工事現場での外国人の常識・言葉の壁によって
+引き起こされる危険な事故を未然に防ぎたい思いから作成しました。
+事故の事例や、こんなことに気をつけて欲しいというものを記事や
+動画として投稿することができます。クイズに挑戦してもらい
+理解度を確認することができます。
 
-Things you may want to cover:
 
-* Ruby version
+## 起動方法
+```
+bundle install
+rails db:migrate
+```
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+以下をブラウザで開くことができます
+bin/rails s
