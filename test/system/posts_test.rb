@@ -1,43 +1,43 @@
 require "application_system_test_case"
 
-class PostsTest < ApplicationSystemTestCase
+class videosTest < ApplicationSystemTestCase
   setup do
-    @post = posts(:one)
+    @video = videos(:one)
   end
 
   test "visiting the index" do
-    visit posts_url
-    assert_selector "h1", text: "Posts"
+    visit videos_url
+    assert_selector "h1", text: "videos"
   end
 
-  test "should create post" do
-    visit posts_url
-    click_on "New post"
+  test "should create video" do
+    visit videos_url
+    click_on "New video"
 
-    fill_in "Body", with: @post.body
-    fill_in "Youtube url", with: @post.youtube_url
-    click_on "Create Post"
+    fill_in "Body", with: @video.body
+    fill_in "Youtube url", with: @video.youtube_url
+    click_on "Create video"
 
-    assert_text "Post was successfully created"
+    assert_text "video was successfully created"
     click_on "Back"
   end
 
-  test "should update Post" do
-    visit post_url(@post)
-    click_on "Edit this post", match: :first
+  test "should update video" do
+    visit video_url(@video)
+    click_on "Edit this video", match: :first
 
-    fill_in "Body", with: @post.body
-    fill_in "Youtube url", with: @post.youtube_url
-    click_on "Update Post"
+    fill_in "Body", with: @video.body
+    fill_in "Youtube url", with: @video.youtube_url
+    click_on "Update video"
 
-    assert_text "Post was successfully updated"
+    assert_text "video was successfully updated"
     click_on "Back"
   end
 
-  test "should destroy Post" do
-    visit post_url(@post)
-    click_on "Destroy this post", match: :first
+  test "should destroy video" do
+    visit video_url(@video)
+    click_on "Destroy this video", match: :first
 
-    assert_text "Post was successfully destroyed"
+    assert_text "video was successfully destroyed"
   end
 end

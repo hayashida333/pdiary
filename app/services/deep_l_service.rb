@@ -8,7 +8,7 @@ class DeepLService
 
   def translate(text, target_language)
     url = "https://api-free.deepl.com/v2/translate"
-    response = RestClient.post(url, {
+    response = RestClient.video(url, {
       'auth_key' => @api_key,
       'text' => text,
       'target_lang' => target_language

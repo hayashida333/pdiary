@@ -5,7 +5,7 @@
 # Puma starts a configurable number of processes (workers) and each process
 # serves each request in a thread from an internal thread pool.
 #
-# The ideal number of threads per worker depends both on how much time the
+# The postl number of threads per worker depends both on how much time the
 # application spends waiting for IO operations and on how much you wish to
 # to prioritize throughput over latency.
 #

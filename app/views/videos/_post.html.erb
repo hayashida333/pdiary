@@ -1,0 +1,11 @@
+<div id="<%= dom_id video %>">
+  <p>
+    <strong>説明:</strong>
+    <%= video.body %>
+  </p>
+
+  <p>
+    <strong>YouTube URL:</strong>
+    <%= link_to "https://www.youtube.com/watch?v=#{video.youtube_url}", "https://www.youtube.com/watch?v=#{video.youtube_url}", target: "_blank", rel: "noopener" %>
+  </p>
+</div>

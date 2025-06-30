@@ -1,44 +1,45 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :require_admin, only: %i[edit update destroy new create]
-  before_action :set_post, only: %i[show edit update destroy] # newとcreateも管理者権限を要求
+  before_action :authenticate_user!, only: [:new, :edit, :destroy]
+  before_action :set_post, only: %i[ show edit update destroy ]
 
+  # GET /posts or /posts.json
   def index
     @posts = Post.all
-    @quiz_questions = QuizQuestion.all
   end
 
+  # GET /posts/1 or /posts/1.json
   def show
   end
 
+  # GET /posts/new
   def new
     @post = Post.new
   end
 
+  # GET /posts/1/edit
   def edit
   end
 
+  # POST /posts or /posts.json
   def create
-  @post = Post.new(post_params)
-  url = params[:post][:youtube_url]
-  url = url.last(11)
-  @post.youtube_url = url
+    @post = Post.new(post_params)
 
-  respond_to do |format|
-    if @post.save
-      format.html { redirect_to @post, notice: "投稿が正常に作成されました。" }
-      format.json { render :show, status: :created, location: @post }
-    else
-      format.html { render :new, status: :unprocessable_entity }
-      format.json { render json: @post.errors, status: :unprocessable_entity }
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to @post, notice: "Post was successfully created." }
+        format.json { render :show, status: :created, location: @post }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
     end
   end
-end
 
+  # PATCH/PUT /posts/1 or /posts/1.json
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to @post, notice: "投稿が正常に更新されました。" }
+        format.html { redirect_to @post, notice: "Post was successfully updated." }
         format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -47,35 +48,25 @@ end
     end
   end
 
+  # DELETE /posts/1 or /posts/1.json
   def destroy
-    @post.destroy
+    @post.destroy!
 
     respond_to do |format|
-      format.html { redirect_to posts_path, status: :see_other, notice: "投稿が正常に削除されました。" }
+      format.html { redirect_to posts_path, status: :see_other, notice: "Post was successfully destroyed." }
       format.json { head :no_content }
-    end
-  rescue ActiveRecord::RecordNotDestroyed => e
-    respond_to do |format|
-      format.html { redirect_to posts_path, alert: "投稿の削除に失敗しました: #{e.message}" }
-      format.json { render json: { error: e.message }, status: :unprocessable_entity }
     end
   end
 
   private
 
-  def set_post
-    @post = Post.find(params[:id])
-  end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_post
+      @post = Post.find(params[:id])
+    end
 
-  def post_params
-    params.require(:post).permit(:body, :youtube_url)
-  end
-
-  # 管理者権限をチェックするメソッドを追加
-  def require_admin
-  Rails.logger.debug "current_user: #{current_user.inspect}"
-  unless current_user && current_user.admin?
-    redirect_to posts_path, alert: "管理者権限がありません。"
-  end
-end
+    # Only allow a list of trusted parameters through.
+    def post_params
+      params.require(:post).permit(:title, :description, :picture, :published_at)
+    end
 end

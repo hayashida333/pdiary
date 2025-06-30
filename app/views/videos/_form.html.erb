@@ -1,0 +1,31 @@
+<%= form_with(model: video) do |form| %>
+  <% if video.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(video.errors.count, "エラー") %> が発生しました:</h2>
+      <ul>
+        <% video.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description %><br>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :youtube_url %><br>
+    <%= form.text_field :youtube_url %>
+  </div>
+
+  <div>
+    <%= form.submit "投稿する", class: "btn btn-primary mt-2" %>
+  </div>
+<% end %>

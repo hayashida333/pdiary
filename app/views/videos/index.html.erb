@@ -1,0 +1,13 @@
+<div class="mb-3">
+<%= link_to "新規投稿", new_post_path, class: "btn btn-primary" %>
+</div>
+
+<div id="posts">
+  <% @posts.each do |post| %>
+    <div class="mb-4">
+      <h5><%= post.title %></h5>
+      <p><%= post.description %></p>
+      <%= link_to '詳細', post_path(post), class: "btn btn-outline-primary btn-sm" %>
+    </div>
+  <% end %>
+</div>

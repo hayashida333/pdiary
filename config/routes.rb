@@ -2,19 +2,19 @@ Rails.application.routes.draw do
   # Devise（ログイン認証）
   devise_for :users
 
-  # トップページを /ideas にリダイレクト
-  root to: redirect('/ideas')
+  # トップページを /posts にリダイレクト
+  root to: redirect('/posts')
 
   # 投稿関連
+  resources :videos
   resources :posts
-  resources :ideas
 
   # ユーザー関連（show, index のみ許可し destroy は除外）
   resources :users, only: [:index, :show]
 
   # クイズ機能
   resources :quiz_questions, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
-    post 'answer', on: :member
+    get 'answer', on: :member
   end
 
   # ヘルスチェック
@@ -29,3 +29,4 @@ Rails.application.routes.draw do
     resources :users
   end
 end
+

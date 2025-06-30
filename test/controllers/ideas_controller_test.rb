@@ -1,48 +1,48 @@
 require "test_helper"
 
-class IdeasControllerTest < ActionDispatch::IntegrationTest
+class postsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @idea = ideas(:one)
+    @post = posts(:one)
   end
 
   test "should get index" do
-    get ideas_url
+    get posts_url
     assert_response :success
   end
 
   test "should get new" do
-    get new_idea_url
+    get new_post_url
     assert_response :success
   end
 
-  test "should create idea" do
-    assert_difference("Idea.count") do
-      post ideas_url, params: { idea: { description: @idea.description, picture: @idea.picture, published_at: @idea.published_at, title: @idea.title } }
+  test "should create post" do
+    assert_difference("post.count") do
+      video posts_url, params: { post: { description: @post.description, picture: @post.picture, published_at: @post.published_at, title: @post.title } }
     end
 
-    assert_redirected_to idea_url(Idea.last)
+    assert_redirected_to post_url(post.last)
   end
 
-  test "should show idea" do
-    get idea_url(@idea)
+  test "should show post" do
+    get post_url(@post)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_idea_url(@idea)
+    get edit_post_url(@post)
     assert_response :success
   end
 
-  test "should update idea" do
-    patch idea_url(@idea), params: { idea: { description: @idea.description, picture: @idea.picture, published_at: @idea.published_at, title: @idea.title } }
-    assert_redirected_to idea_url(@idea)
+  test "should update post" do
+    patch post_url(@post), params: { post: { description: @post.description, picture: @post.picture, published_at: @post.published_at, title: @post.title } }
+    assert_redirected_to post_url(@post)
   end
 
-  test "should destroy idea" do
-    assert_difference("Idea.count", -1) do
-      delete idea_url(@idea)
+  test "should destroy post" do
+    assert_difference("post.count", -1) do
+      delete post_url(@post)
     end
 
-    assert_redirected_to ideas_url
+    assert_redirected_to posts_url
   end
 end
