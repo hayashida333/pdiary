@@ -1,6 +1,6 @@
-class Createvideos < ActiveRecord::Migration[7.2]
+class CreatePosts < ActiveRecord::Migration[7.2]
   def change
-    create_table :videos do |t|
+    create_table :posts do |t|
       t.text :body
       t.string :youtube_url
 

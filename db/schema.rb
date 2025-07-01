@@ -10,12 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_06_30_142144) do
-  create_table "videos", force: :cascade do |t|
+ActiveRecord::Schema[7.2].define(version: 2025_06_15_102343) do
+  create_table "ideas", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.string "picture"
     t.date "published_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.text "body"
+    t.string "youtube_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -57,13 +64,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_06_30_142144) do
     t.boolean "admin"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  end
-
-  create_table "videos", force: :cascade do |t|
-    t.text "body"
-    t.string "youtube_url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "quiz_results", "quiz_questions"
