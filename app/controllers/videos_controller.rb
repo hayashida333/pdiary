@@ -1,8 +1,4 @@
 class VideosController < ApplicationController
-  before_action :authenticate_user!
-  before_action :require_admin, only: %i[edit update destroy new create]
-  before_action :set_video, only: %i[show edit update destroy]
-
   def index
     @videos = Video.all
     @quiz_questions = QuizQuestion.all
@@ -18,36 +14,37 @@ class VideosController < ApplicationController
   def edit
   end
   
-def create
-  @video = Video.new(video_params)
-  @video.youtube_url = extract_youtube_id(params[:video][:youtube_url])
+  def create
+    @video = Video.new(video_params)
+    @video.youtube_url = extract_youtube_id(params[:video][:youtube_url])
 
-  respond_to do |format|
-    if @video.save
-      format.html { redirect_to @video, notice: "投稿が正常に作成されました。" }
-      format.json { render :show, status: :created, location: @video }
-    else
-      format.html { render :new, status: :unprocessable_entity }
-      format.json { render json: @video.errors, status: :unprocessable_entity }
+    respond_to do |format|
+      if @video.save
+        format.html { redirect_to @video, notice: "投稿が正常に作成されました。" }
+        format.json { render :show, status: :created, location: @video }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @video.errors, status: :unprocessable_entity }
+      end
     end
   end
-end
 
-private
+  private
 
-def video_params
-  params.require(:video).permit(:title, :body, :youtube_url)
-end
+  def video_params
+    params.require(:video).permit(:title, :body, :youtube_url)
+  end
 
-def extract_youtube_id(url)
-  uri = URI.parse(url) rescue nil
-  return nil unless uri
+  def extract_youtube_id(url)
+    uri = URI.parse(url) rescue nil
+    return nil unless uri
 
-  if uri.host == "youtu.be"
-    uri.path[1..]
-  elsif uri.host&.include?("youtube.com")
-    Rack::Utils.parse_query(uri.query)["v"]
-  else
-    nil
+    if uri.host == "youtu.be"
+      uri.path[1..]
+    elsif uri.host&.include?("youtube.com")
+      Rack::Utils.parse_query(uri.query)["v"]
+    else
+      nil
+    end
   end
 end
