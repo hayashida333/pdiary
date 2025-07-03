@@ -1,31 +1,29 @@
-<%= form_with(model: video) do |form| %>
-  <% if video.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(video.errors.count, "エラー") %> が発生しました:</h2>
+<%= form_with(model: @video) do |form| %>
+  <% if @video.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(@video.errors.count, "件のエラー") %>があります:</h4>
       <ul>
-        <% video.errors.full_messages.each do |message| %>
+        <% @video.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
+  <div class="mb-3">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :description %><br>
-    <%= form.text_area :description %>
+  <div class="mb-3">
+    <%= form.label :description, class: "form-label" %>
+    <%= form.text_area :description, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :youtube_url %><br>
-    <%= form.text_field :youtube_url %>
+  <div class="mb-3">
+    <%= form.label :youtube_url, class: "form-label" %>
+    <%= form.text_field :youtube_url, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.submit "投稿する", class: "btn btn-primary mt-2" %>
-  </div>
+  <%= form.submit "投稿する", class: "btn btn-primary" %>
 <% end %>

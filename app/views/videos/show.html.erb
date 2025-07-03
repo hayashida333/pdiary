@@ -7,13 +7,15 @@
 
 <p>
   <strong>YouTube動画:</strong>
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @video.youtube_url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe width="560" height="315"
+          src="https://www.youtube.com/embed/<%= @video.youtube_url %>"
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+  </iframe>
 </p>
-
-<%= render @video %>
 
 <div class="d-flex gap-2 mt-3">
   <%= link_to "投稿一覧に戻る", videos_path, class: "btn btn-secondary" %>
   <%= button_to "投稿を削除", @video, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
 </div>
-

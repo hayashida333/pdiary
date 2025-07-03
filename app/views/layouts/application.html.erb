@@ -13,44 +13,19 @@
 
   <body class="d-flex flex-column h-100">
 
-    <div class="d-flex flex-grow-1">
-      <!-- サイドバー -->
-      <div class="flex-column p-3 text-bg-dark min-vh-100" style="width: 280px;">
-        <h4 class="text-white">情報共有システム</h4>
-        <hr>
-        <ul class="nav nav-pills flex-column mb-auto">
-          <li>
-            <%= link_to "ホーム", "http://localhost:3000/admin/users", class: "nav-link text-white" %>
-          </li>
-          <li>
-            <%= link_to "記事一覧", root_path, class: "nav-link text-white" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "動画一覧", videos_path, class: "nav-link text-white" %>
-          </li>
-          <li>
-            <%= link_to 'クイズ一覧', quiz_questions_path, class: "nav-link text-white" %>
-          </li>
-          <li class="nav-item">
-            <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link text-white", form: { class: "d-inline" } %>
-          </li>
-        </ul>
-      </div>
+    <!-- メインコンテンツ -->
+    <main class="flex-grow-1 p-4">
+      <% flash.each do |key, message| %>
+        <div class="alert alert-<%= key == "notice" ? "success" : "danger" %>">
+          <%= message %>
+        </div>
+      <% end %>
 
-      <!-- メインコンテンツ -->
-      <div class="flex-grow-1 p-4">
-        <% flash.each do |key, message| %>
-          <div class="alert alert-<%= key == "notice" ? "success" : "danger" %>">
-            <%= message %>
-          </div>
-        <% end %>
-
-        <%= yield %>
-      </div>
-    </div>
+      <%= yield %>
+    </main>
 
     <!-- フッター -->
-    <footer class="footer mt-auto py-3 bg-light">
+    <footer class="footer mt-auto py-3 bg-light text-center">
       <div class="container">
         <span class="text-muted">製作委員会</span>
       </div>

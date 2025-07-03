@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_07_01_104644) do
+ActiveRecord::Schema[7.2].define(version: 2025_07_01_231546) do
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -64,6 +64,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_01_104644) do
     t.string "youtube_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
+    t.text "description"
   end
 
   add_foreign_key "quiz_results", "quiz_questions"

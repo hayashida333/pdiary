@@ -1,4 +1,6 @@
 class VideosController < ApplicationController
+  before_action :set_video, only: %i[show edit update destroy]
+
   def index
     @videos = Video.all
     @quiz_questions = QuizQuestion.all
@@ -13,7 +15,7 @@ class VideosController < ApplicationController
 
   def edit
   end
-  
+
   def create
     @video = Video.new(video_params)
     @video.youtube_url = extract_youtube_id(params[:video][:youtube_url])
@@ -29,7 +31,24 @@ class VideosController < ApplicationController
     end
   end
 
+  def update
+    if @video.update(video_params)
+      redirect_to @video, notice: "動画が更新されました。"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @video.destroy
+    redirect_to videos_path, notice: "動画が削除されました。"
+  end
+
   private
+
+  def set_video
+    @video = Video.find(params[:id])
+  end
 
   def video_params
     params.require(:video).permit(:title, :body, :youtube_url)

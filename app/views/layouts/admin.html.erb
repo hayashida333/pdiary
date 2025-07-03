@@ -12,50 +12,28 @@
   </head>
 
   <body>
-    <main class="d-flex flex-nowrap">
-      <!-- sidebar -->
-      <div class="flex-column p-3 text-bg-dark min-vh-100" style="width: 280px;">
-        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-        <span class="fs-4">情報共有システム</span>
-<hr>
-<ul class="nav nav-pills flex-column mb-auto">
-  <li class="nav-item">
-    <%= link_to "ホーム", "#", class: "nav-link text-white" %>
-  </li>
-  <li class="nav-item">
-    <%= link_to '記事一覧', posts_path, class: "nav-link text-white" %>
-  </li>
-  <li class="nav-item">
-    <%= link_to '動画一覧', videos_path, class: "nav-link text-white" %>
-  </li>
-  <li class="nav-item">
-    <%= link_to 'クイズ一覧', quiz_questions_path, class: "nav-link text-white" %>
-  </li>
+    <main class="d-flex flex-column align-items-center justify-content-center min-vh-100 bg-light">
+      <div class="container text-center">
+        <h1 class="mb-5">情報共有システム</h1>
 
-  <% if user_signed_in? %>
-    <li class="nav-item">
-      <span class="nav-link text-white">こんにちは、<%= current_user.email %> さん</span>
-    </li>
-    <li class="nav-item">
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link text-white" %>
-    </li>
-  <% else %>
-    <li class="nav-item">
-      <%= link_to "ログイン", new_user_session_path, class: "nav-link text-white" %>
-    </li>
-    <li class="nav-item">
-      <%= link_to "ユーザー登録", new_user_registration_path, class: "nav-link text-white" %>
-    </li>
-  <% end %>
-</ul>
-          </li>
-            </a>
-      </div>
-      <!-- 右側のコンテンツ -->
-      <div class="w-100 p-5">
-        <%= yield %>
+        <div class="d-grid gap-4 col-6 mx-auto">
+          <%= link_to "記事一覧（Post）", posts_path, class: "btn btn-primary btn-lg" %>
+          <%= link_to "動画一覧（Video）", videos_path, class: "btn btn-success btn-lg" %>
+          <%= link_to "クイズ一覧（Quiz）", quiz_questions_path, class: "btn btn-warning btn-lg" %>
+        </div>
+
+        <div class="mt-4">
+          <% if user_signed_in? %>
+            <p>こんにちは、<%= current_user.email %> さん</p>
+            <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-secondary" %>
+          <% else %>
+            <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-primary" %>
+            <%= link_to "ユーザー登録", new_user_registration_path, class: "btn btn-outline-success ms-2" %>
+          <% end %>
+        </div>
       </div>
     </main>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
   </body>
 </html>
