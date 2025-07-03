@@ -1,12 +1,14 @@
 <p style="color: green"><%= notice %></p>
 
+<h1><%= @video.title %></h1>
+
 <p>
-  <strong>本文:</strong>
-  <%= @video.body %>
+  <strong>説明:</strong><br>
+  <%= simple_format(@video.body) %>
 </p>
 
 <p>
-  <strong>YouTube動画:</strong>
+  <strong>YouTube動画:</strong><br>
   <iframe width="560" height="315"
           src="https://www.youtube.com/embed/<%= @video.youtube_url %>"
           frameborder="0"
